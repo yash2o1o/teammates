@@ -1,11 +1,10 @@
 package teammates.test.cases.ui.browsertests;
 
-import java.io.IOException;
-
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import teammates.common.util.Const;
 import teammates.test.driver.TestProperties;
 import teammates.test.pageobjects.AppPage;
 import teammates.test.pageobjects.Browser;
@@ -24,11 +23,12 @@ public class AllJsTests extends BaseUiTestCase {
     private static final float MIN_COVERAGE_REQUIREMENT = 25;
     
     @BeforeClass
-    public void classSetup() throws IOException {
+    public void classSetup() {
         printTestClassHeader();
         browser = BrowserPool.getBrowser();
+        loginAdmin(browser);
         page = AppPage.getNewPageInstance(browser)
-                      .navigateTo(createLocalUrl("/allJsUnitTests.html?coverage"))
+                      .navigateTo(createUrl(Const.ViewURIs.JS_UNIT_TEST))
                       .changePageType(QUnitPage.class);
         page.waitForPageToLoad();
     }

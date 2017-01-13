@@ -5,6 +5,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import teammates.common.util.Const;
 import teammates.test.pageobjects.AppPage;
 import teammates.test.pageobjects.Browser;
 import teammates.test.pageobjects.BrowserPool;
@@ -16,10 +17,11 @@ public class TableSortTest extends BaseUiTestCase {
     private static AppPage page;
 
     @BeforeClass
-    public void classSetup() throws Exception {
+    public void classSetup() {
         printTestClassHeader();
         browser = BrowserPool.getBrowser();
-        page = AppPage.getNewPageInstance(browser).navigateTo(createLocalUrl("/tableSort.html"));
+        loginAdmin(browser);
+        page = AppPage.getNewPageInstance(browser).navigateTo(createUrl(Const.ViewURIs.TABLE_SORT));
     }
     
     @Test
